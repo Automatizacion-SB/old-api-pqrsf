@@ -18,7 +18,7 @@ class UsuarioService {
   }
 
   async create(data) {
-    const usuarioCreado = 'creado' + data;
+    const usuarioCreado = data;
 
     return usuarioCreado;
   }

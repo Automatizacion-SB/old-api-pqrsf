@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const { createPeticionarioSchema } = require('./peticionario.schema');
-const { createPacienteSchema } = require('./paciente.schema ');
+const { createPacienteSchema } = require('./paciente.schema');
 
 const id = Joi.number().integer();
 const radicado = Joi.number().integer();

@@ -1,5 +1,11 @@
 const express = require('express');
 const PeticionService = require('../services/peticion.service');
+const { validatorHandler } = require('../middlewares/validator.handler');
+const {
+  getPeticionSchema,
+  createPeticionSchema,
+  updatePeticionSchema,
+} = require('../schemas/peticion.schema');
 
 const router = express.Router();
 const service = new PeticionService();
@@ -15,53 +21,70 @@ router
     }
   })
 
-  .get('/:id', async (req, res, next) => {
-    try {
-      const { id } = req.params;
+  .get(
+    '/:id',
+    validatorHandler(getPeticionSchema, 'params'),
+    async (req, res, next) => {
+      try {
+        const { id } = req.params;
 
-      const peticion = await service.findOne(id);
+        const peticion = await service.findOne(id);
 
-      res.json(peticion);
-    } catch (error) {
-      next(error);
-    }
-  })
+        res.json(peticion);
+      } catch (error) {
+        next(error);
+      }
+    },
+  )
 
-  .post('/', async (req, res, next) => {
-    try {
-      const { body } = req;
+  .post(
+    '/',
+    validatorHandler(createPeticionSchema, 'body'),
+    async (req, res, next) => {
+      try {
+        const { body } = req;
 
-      const peticionCreada = await service.create(body);
+        const peticionCreada = await service.create(body);
 
-      res.json(peticionCreada);
-    } catch (error) {
-      next(error);
-    }
-  })
+        res.json(peticionCreada);
+      } catch (error) {
+        next(error);
+      }
+    },
+  )
 
-  .patch('/:id', async (req, res, next) => {
-    try {
-      const { id } = req.params;
-      const { body } = req;
+  .patch(
+    '/:id',
+    validatorHandler(getPeticionSchema, 'params'),
+    validatorHandler(updatePeticionSchema, 'body'),
+    async (req, res, next) => {
+      try {
+        const { id } = req.params;
+        const { body } = req;
 
-      const peticionActualizada = await service.update(id, body);
+        const peticionActualizada = await service.update(id, body);
 
-      res.json(peticionActualizada);
-    } catch (error) {
-      next(error);
-    }
-  })
+        res.json(peticionActualizada);
+      } catch (error) {
+        next(error);
+      }
+    },
+  )
 
-  .delete('/:id', async (req, res, next) => {
-    try {
-      const { id } = req.params;
+  .delete(
+    '/:id',
+    validatorHandler(getPeticionSchema, 'body'),
+    async (req, res, next) => {
+      try {
+        const { id } = req.params;
 
-      const peticionBorrada = await service.delete(id);
+        const peticionBorrada = await service.delete(id);
 
-      res.json(peticionBorrada);
-    } catch (error) {
-      next(error);
-    }
-  });
+        res.json(peticionBorrada);
+      } catch (error) {
+        next(error);
+      }
+    },
+  );
 
 module.exports = router;
