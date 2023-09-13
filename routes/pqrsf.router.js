@@ -1,11 +1,13 @@
 const express = require('express');
+const PqrsfService = require('../services/pqrsf.service');
 
+const service = new PqrsfService();
 const router = express.Router();
 
 router
   .get('/', async (req, res, next) => {
     try {
-      const peticiones = 'hola';
+      const peticiones = await service.find();
 
       res.json(peticiones);
     } catch (error) {
@@ -17,7 +19,7 @@ router
     try {
       const { id } = req.params;
 
-      const peticion = 'hola' + id;
+      const peticion = await service.findOne(id);
 
       res.json(peticion);
     } catch (error) {
@@ -29,7 +31,7 @@ router
     try {
       const { body } = req;
 
-      const peticionCreada = body;
+      const peticionCreada = await service.create(body);
 
       res.json(peticionCreada);
     } catch (error) {
@@ -41,7 +43,7 @@ router
     try {
       const { id } = req.params;
 
-      const peticionBorrada = 'borrado' + id;
+      const peticionBorrada = await service.delete(id);
 
       res.json(peticionBorrada);
     } catch (error) {

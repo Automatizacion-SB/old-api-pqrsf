@@ -1,10 +1,13 @@
 const express = require('express');
+const UsuarioService = require('../services/usuario.service');
+
 const router = express.Router();
+const service = new UsuarioService();
 
 router
   .get('/', async (req, res, next) => {
     try {
-      const usuario = 'hola';
+      const usuario = await service.find();
 
       res.json(usuario);
     } catch (error) {
@@ -16,7 +19,7 @@ router
     try {
       const { id } = req.params;
 
-      const usuarios = 'hola' + id;
+      const usuarios = await service.findOne(id);
 
       res.json(usuarios);
     } catch (error) {
@@ -28,7 +31,7 @@ router
     try {
       const { body } = req;
 
-      const usuarioCreado = body;
+      const usuarioCreado = await service.create(body);
 
       res.json(usuarioCreado);
     } catch (error) {
@@ -41,7 +44,7 @@ router
       const { id } = req.params;
       const { body } = req;
 
-      const usuarioActualizado = { id, ...body };
+      const usuarioActualizado = await service.update(id, body);
 
       res.json(usuarioActualizado);
     } catch (error) {
@@ -53,7 +56,7 @@ router
     try {
       const { id } = req.params;
 
-      const usuarioBorrado = 'borrado' + id;
+      const usuarioBorrado = await service.delete(id);
 
       res.json(usuarioBorrado);
     } catch (error) {
