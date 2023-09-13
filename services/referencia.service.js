@@ -1,6 +1,10 @@
+const boom = require('@hapi/boom');
+
 class ReferenciaService {
   async findTiposIdentificacion() {
     const referencias = 'hola';
+
+    if (!referencias) throw boom.notFound('Referencia no encontrada');
 
     return referencias;
   }
@@ -8,11 +12,15 @@ class ReferenciaService {
   async findEps() {
     const referencias = 'hola';
 
+    if (!referencias) throw boom.notFound('Referencia no encontrada');
+
     return referencias;
   }
 
   async findRegimenes() {
     const referencias = 'hola';
+
+    if (!referencias) throw boom.notFound('Referencia no encontrada');
 
     return referencias;
   }
@@ -20,11 +28,15 @@ class ReferenciaService {
   async findServicios() {
     const referencias = 'hola';
 
+    if (!referencias) throw boom.notFound('Referencia no encontrada');
+
     return referencias;
   }
 
   async findCanales() {
     const referencias = 'hola';
+
+    if (!referencias) throw boom.notFound('Referencia no encontrada');
 
     return referencias;
   }
@@ -32,11 +44,15 @@ class ReferenciaService {
   async findClasesPeticion() {
     const referencias = 'hola';
 
+    if (!referencias) throw boom.notFound('Referencia no encontrada');
+
     return referencias;
   }
 
   async findTiposPeticion() {
     const referencias = 'hola';
+
+    if (!referencias) throw boom.notFound('Referencia no encontrada');
 
     return referencias;
   }
@@ -44,11 +60,15 @@ class ReferenciaService {
   async findComplejidad() {
     const referencias = 'hola';
 
+    if (!referencias) throw boom.notFound('Referencia no encontrada');
+
     return referencias;
   }
 
   async findAreas() {
     const referencias = 'hola';
+
+    if (!referencias) throw boom.notFound('Referencia no encontrada');
 
     return referencias;
   }
@@ -56,17 +76,23 @@ class ReferenciaService {
   async findEstados() {
     const referencias = 'hola';
 
+    if (!referencias) throw boom.notFound('Referencia no encontrada');
+
     return referencias;
   }
 
   async findCalidad() {
     const referencias = 'hola';
 
+    if (!referencias) throw boom.notFound('Referencia no encontrada');
+
     return referencias;
   }
 
   async findDepartamos() {
     const referencias = 'hola';
+
+    if (!referencias) throw boom.notFound('Referencia no encontrada');
 
     return referencias;
   }
