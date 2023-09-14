@@ -5,20 +5,25 @@ const {
   getPeticionSchema,
   createPQRSFSchema,
 } = require('../schemas/peticion.schema');
+const passport = require('passport');
 
 const service = new PqrsfService();
 const router = express.Router();
 
 router
-  .get('/', async (req, res, next) => {
-    try {
-      const peticiones = await service.find();
+  .get(
+    '/',
+    passport.authenticate('jwt', { session: false }),
+    async (req, res, next) => {
+      try {
+        const peticiones = await service.find();
 
-      res.json(peticiones);
-    } catch (error) {
-      next(error);
-    }
-  })
+        res.json(peticiones);
+      } catch (error) {
+        next(error);
+      }
+    },
+  )
 
   .get(
     '/:id',
@@ -46,22 +51,6 @@ router
         const peticionCreada = await service.create(body);
 
         res.json(peticionCreada);
-      } catch (error) {
-        next(error);
-      }
-    },
-  )
-
-  .delete(
-    '/:id',
-    validatorHandler(getPeticionSchema, 'params'),
-    async (req, res, next) => {
-      try {
-        const { id } = req.params;
-
-        const peticionBorrada = await service.delete(id);
-
-        res.json(peticionBorrada);
       } catch (error) {
         next(error);
       }

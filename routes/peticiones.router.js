@@ -8,6 +8,7 @@ const {
   addItemSchema,
   queryParamsSchema,
 } = require('../schemas/peticion.schema');
+const passport = require('passport');
 
 const router = express.Router();
 const service = new PeticionService();
@@ -15,6 +16,7 @@ const service = new PeticionService();
 router
   .get(
     '/',
+    passport.authenticate('jwt', { session: false }),
     validatorHandler(queryParamsSchema, 'query'),
     async (req, res, next) => {
       try {
@@ -29,6 +31,7 @@ router
 
   .get(
     '/:id',
+    passport.authenticate('jwt', { session: false }),
     validatorHandler(getPeticionSchema, 'params'),
     async (req, res, next) => {
       try {
@@ -45,6 +48,7 @@ router
 
   .post(
     '/',
+    passport.authenticate('jwt', { session: false }),
     validatorHandler(createPeticionSchema, 'body'),
     async (req, res, next) => {
       try {
@@ -61,6 +65,7 @@ router
 
   .post(
     '/add-item',
+    passport.authenticate('jwt', { session: false }),
     validatorHandler(addItemSchema, 'body'),
     async (req, res, next) => {
       try {
@@ -77,6 +82,7 @@ router
 
   .patch(
     '/:id',
+    passport.authenticate('jwt', { session: false }),
     validatorHandler(getPeticionSchema, 'params'),
     validatorHandler(updatePeticionSchema, 'body'),
     async (req, res, next) => {
@@ -95,6 +101,7 @@ router
 
   .delete(
     '/:id',
+    passport.authenticate('jwt', { session: false }),
     validatorHandler(getPeticionSchema, 'body'),
     async (req, res, next) => {
       try {

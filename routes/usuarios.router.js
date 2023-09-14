@@ -6,6 +6,7 @@ const {
   createUserSchema,
   updateUserSchema,
 } = require('../schemas/usuario.schema');
+const passport = require('passport');
 
 const router = express.Router();
 const service = new UsuarioService();
@@ -39,6 +40,7 @@ router
 
   .post(
     '/',
+    passport.authenticate('jwt', { session: false }),
     validatorHandler(createUserSchema, 'body'),
     async (req, res, next) => {
       try {
@@ -55,6 +57,7 @@ router
 
   .patch(
     '/:id',
+    passport.authenticate('jwt', { session: false }),
     validatorHandler(getUserSchema, 'params'),
     validatorHandler(updateUserSchema, 'body'),
     async (req, res, next) => {
@@ -73,6 +76,7 @@ router
 
   .delete(
     '/:id',
+    passport.authenticate('jwt', { session: false }),
     validatorHandler(getUserSchema, 'params'),
     async (req, res, next) => {
       try {
