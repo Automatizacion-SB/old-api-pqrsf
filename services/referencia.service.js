@@ -98,6 +98,14 @@ class ReferenciaService {
 
     return referencias;
   }
+
+  async findDerechos() {
+    const referencias = await models.Derecho.findAll();
+
+    if (!referencias) throw boom.notFound('Referencia no encontrada');
+
+    return referencias;
+  }
 }
 
 module.exports = { ReferenciaService };

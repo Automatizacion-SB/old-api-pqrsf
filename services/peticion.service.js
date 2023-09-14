@@ -102,8 +102,6 @@ class PeticionService {
       peticion.dueDate = fecha.toISOString();
     }
 
-    console.log(peticion);
-
     return peticion;
   }
 
@@ -138,7 +136,6 @@ class PeticionService {
       order: [['radicado', 'DESC']],
     });
 
-    console.log('hola');
     if (ultimaPeticionGestionada) {
       const ultimoRadicado = ultimaPeticionGestionada.radicado;
       return ultimoRadicado + 1;

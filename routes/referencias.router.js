@@ -1,12 +1,13 @@
 const express = require('express');
 const { ReferenciaService } = require('../services/referencia.service');
+const { cacheInit } = require('../middlewares/cache');
 
 const router = express.Router();
 const service = new ReferenciaService();
 
 router
 
-  .get('/tipos_identificacion', async (req, res, next) => {
+  .get('/tipos_identificacion', cacheInit, async (req, res, next) => {
     try {
       const referencias = await service.findTiposIdentificacion();
 
@@ -16,7 +17,7 @@ router
     }
   })
 
-  .get('/eps', async (req, res, next) => {
+  .get('/eps', cacheInit, async (req, res, next) => {
     try {
       const referencias = await service.findEps();
 
@@ -26,7 +27,7 @@ router
     }
   })
 
-  .get('/regimenes', async (req, res, next) => {
+  .get('/regimenes', cacheInit, async (req, res, next) => {
     try {
       const referencias = await service.findRegimenes();
 
@@ -36,7 +37,7 @@ router
     }
   })
 
-  .get('/servicios', async (req, res, next) => {
+  .get('/servicios', cacheInit, async (req, res, next) => {
     try {
       const referencias = await service.findServicios();
 
@@ -46,7 +47,7 @@ router
     }
   })
 
-  .get('/canales', async (req, res, next) => {
+  .get('/canales', cacheInit, async (req, res, next) => {
     try {
       const referencias = await service.findCanales();
 
@@ -56,7 +57,7 @@ router
     }
   })
 
-  .get('/clases_peticion', async (req, res, next) => {
+  .get('/clases_peticion', cacheInit, async (req, res, next) => {
     try {
       const referencias = await service.findClasesPeticion();
 
@@ -66,7 +67,7 @@ router
     }
   })
 
-  .get('/tipos_peticion', async (req, res, next) => {
+  .get('/tipos_peticion', cacheInit, async (req, res, next) => {
     try {
       const referencias = await service.findTiposPeticion();
 
@@ -76,7 +77,7 @@ router
     }
   })
 
-  .get('/complejidades', async (req, res, next) => {
+  .get('/complejidades', cacheInit, async (req, res, next) => {
     try {
       const referencias = await service.findComplejidad();
 
@@ -86,7 +87,7 @@ router
     }
   })
 
-  .get('/areas', async (req, res, next) => {
+  .get('/areas', cacheInit, async (req, res, next) => {
     try {
       const referencias = await service.findAreas();
 
@@ -96,7 +97,7 @@ router
     }
   })
 
-  .get('/estados', async (req, res, next) => {
+  .get('/estados', cacheInit, async (req, res, next) => {
     try {
       const referencias = await service.findEstados();
 
@@ -106,7 +107,7 @@ router
     }
   })
 
-  .get('/calidad', async (req, res, next) => {
+  .get('/calidad', cacheInit, async (req, res, next) => {
     try {
       const referencias = await service.findCalidad();
 
@@ -116,9 +117,19 @@ router
     }
   })
 
-  .get('/departamentos', async (req, res, next) => {
+  .get('/departamentos', cacheInit, async (req, res, next) => {
     try {
       const referencias = await service.findDepartamos();
+
+      res.json(referencias);
+    } catch (error) {
+      next(error);
+    }
+  })
+
+  .get('/derechos_paciente', cacheInit, async (req, res, next) => {
+    try {
+      const referencias = await service.findDerechos();
 
       res.json(referencias);
     } catch (error) {
