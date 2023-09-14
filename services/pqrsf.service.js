@@ -12,18 +12,8 @@ class PeticionService {
 
   async findOne(id) {
     const peticion = await models.Peticion.findByPk(id, {
-      include: [
-        'peticionario',
-        'paciente',
-        'servicio',
-        'estado',
-        'tipoPeticion',
-        'area',
-        'canal',
-        'clasePeticion',
-        'complejidad',
-        'calidad',
-      ],
+      attributes: ['id', 'fechaRecepcion', 'estadoId', 'tipoPeticionId'],
+      include: ['estado', 'tipoPeticion'],
     });
 
     if (!peticion) throw boom.notFound('Peticion no encontrada');

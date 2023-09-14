@@ -121,14 +121,15 @@ GO
 --- # Inserción en tablas de usuarios
 ------------------------------------------------------------
 
--- INSERT INTO USUARIO (nombre, apellido, cargo, email, role)
--- VALUES
---     ('Nathalia', 'Perez', 'Líder de Nutrición', 'galvan.dsierra@gmail.com', 'lider'),
---     ('Maria Luisa', 'Villena','Líder de Servicios Generales-Admin','galvan.dsierra+1@gmail.com', 'lider'),
---     ('Deism Gonzalez', 'Quires','Líder de TrabajoSocial','galvan.dsierra+2@gmail.com', 'lider'),
---     ('Maria Luisa', 'Villena','Líder de Vigilancia','galvan.dsierra+3@gmail.com', 'lider'),
---     ('Pepa', 'Suarez','Líder de Dinámica','galvan.dsierra+4@gmail.com', 'lider'),
---     ('Pato', 'Donald','Líder de Fundación Clínica Noel','galvan.dsierra+5@gmail.com', 'lider');
+INSERT INTO usuarios (nombre, apellido, cargo, email, role, password)
+VALUES
+    ('Nathalia', 'Perez', 'Líder de Nutrición', 'galvan.dsierra@gmail.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'),
+    ('Maria Luisa', 'Villena','Líder de Servicios Generales-Admin','galvan.dsierra+1@gmail.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'),
+    ('Deism Gonzalez', 'Quires','Líder de TrabajoSocial','galvan.dsierra+2@gmail.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'),
+    ('Maria Luisa', 'Villena','Líder de Vigilancia','galvan.dsierra+3@gmail.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'),
+    ('Pepa', 'Suarez','Líder de Dinámica','galvan.dsierra+4@gmail.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'),
+    ('Pato', 'Donald','Personal de Atención al Usuario ','galvan.dsierra+5@gmail.com', 'atencion', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'),
+    ('Messi', 'Ronaldo','Personal de Atención al Usuario ','galvan.dsierra++@gmail.com', 'atencion', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy');
 GO
 
 INSERT INTO departamentos (id, nombre)
