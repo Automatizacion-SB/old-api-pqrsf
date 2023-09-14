@@ -27,6 +27,9 @@ const {
   TipoIdentificacion,
   TipoIdentificacionSchema,
 } = require('./referencias/tipoIdentificacion.model');
+const { Peticionario, PeticionarioSchema } = require('./peticionario.model');
+const { Paciente, PacienteSchema } = require('./paciente.model');
+const { Peticion, PeticionSchema } = require('./peticion.model');
 
 function setUpModels(sequelize) {
   // Referencias
@@ -47,7 +50,10 @@ function setUpModels(sequelize) {
   Complejidad.init(ComplejidadSchema, Complejidad.config(sequelize));
   Calidad.init(ReferenciaGeneralSchema, Calidad.config(sequelize));
 
+  Peticion.init(PeticionSchema, Peticion.config(sequelize));
   Usuario.init(UsuarioSchema, Usuario.config(sequelize));
+  Peticionario.init(PeticionarioSchema, Peticionario.config(sequelize));
+  Paciente.init(PacienteSchema, Paciente.config(sequelize));
 }
 
 module.exports = setUpModels;
