@@ -6,6 +6,7 @@ const {
   createPQRSFSchema,
 } = require('../schemas/peticion.schema');
 const passport = require('passport');
+const { checkRole } = require('../middlewares/auth.handler');
 
 const service = new PqrsfService();
 const router = express.Router();
@@ -13,6 +14,7 @@ const router = express.Router();
 router
   .get(
     '/',
+    checkRole('atencion'),
     passport.authenticate('jwt', { session: false }),
     async (req, res, next) => {
       try {
