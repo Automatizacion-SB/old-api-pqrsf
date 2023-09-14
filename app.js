@@ -3,19 +3,19 @@ const express = require('express');
 const routerApi = require('./routes');
 const cors = require('cors');
 
+const { config } = require('./config/config');
 const {
   logErrors,
   boomErrorHandler,
   errorHandler,
 } = require('./middlewares/error.handler');
-const { config } = require('dotenv');
 
 const PORT = config.port;
 
 const app = express();
 
 app.use(express.json());
-app.use(cors);
+app.use(cors());
 
 routerApi(app);
 
