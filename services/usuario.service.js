@@ -20,6 +20,13 @@ class UsuarioService {
     return usuario;
   }
 
+  async findByEmail(email) {
+    const usuario = await models.Usuario.findOne({
+      where: { email },
+    });
+    return usuario;
+  }
+
   async create(data) {
     const hash = await bcrypt.hash(data.password, 10);
 

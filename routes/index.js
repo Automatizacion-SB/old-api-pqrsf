@@ -4,7 +4,7 @@ const peticionesRouter = require('./peticiones.router');
 const pqrsfRouter = require('./pqrsf.router');
 const referenciasRouter = require('./referencias.router');
 const usuariosRouter = require('./usuarios.router');
-// const usersRouter = require('./users.router');
+const authRouter = require('./auth.router');
 
 function routerApi(app) {
   const router = express.Router();
@@ -15,7 +15,8 @@ function routerApi(app) {
     .use('/peticiones', peticionesRouter)
     .use('/pqrsf', pqrsfRouter)
     .use('/referencias', referenciasRouter)
-    .use('/usuarios', usuariosRouter);
+    .use('/usuarios', usuariosRouter)
+    .use('/auth', authRouter);
 }
 
 module.exports = routerApi;
