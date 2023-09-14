@@ -116,6 +116,171 @@ VALUES
 GO
 
 
+insert into derechos(derecho, valor, deber, factor_exito, interpretacion)
+values
+(
+'A la presencia de su familia y allegados de acuerdo a las normas de la institución',
+'COHERENCIA',
+'Cuidar de sus pertenencias, siempre y cuando su condición clínica se lo permita. *Ofrecer al paciente acompañamiento por un adulto responsable. *Brindar por parte del acompañante a los demás familiares los derechos y deberes del paciente, estos incluyen las normas de estancia hospitalaria',
+'El Hospital Infantil Santa Ana se compromete con los Pacientes y familiares, usuarios de los procesos misionales, realizar la prestación del servicio asistencial',
+'Contando con un Sistema de Gestión de la Calidad integrado que ofrezca confianza al paciente, familiares y a las partes interesadas (todo el equipo de salud, proveedores y comunidad), asegurando el cumplimiento de los requisitos legales, normativos u otros, gestionando los riesgos y mejorando continuamente la eficacia y eficiencia de los procesos.'
+),
+(
+'A elegir el profesional de la institución para la atención de acuerdo a la oferta',
+'COHERENCIA',
+'Cuidar de sus pertenencias, siempre y cuando su condición clínica se lo permita.
+*Ofrecer al paciente acompañamiento por un adulto responsable.
+*Brindar por parte del acompañante a los demás familiares los derechos y deberes del paciente, estos incluyen las normas de estancia hospitalaria',
+'El Hospital Infantil Santa Ana se compromete con los Pacientes y familiares, usuarios de los procesos misionales, realizar la prestación del servicio asistencial',
+'Contando con un Sistema de Gestión de la Calidad integrado que ofrezca confianza al paciente, familiares y a las partes interesadas (todo el equipo de salud, proveedores y comunidad), asegurando el cumplimiento de los requisitos legales, normativos u otros, gestionando los riesgos y mejorando continuamente la eficacia y eficiencia de los procesos.'
+),
+(
+'A la privacidad de su historia clínica y al manejo confidencial de la información',
+'COHERENCIA',
+'Cuidar de sus pertenencias, siempre y cuando su condición clínica se lo permita.
+*Ofrecer al paciente acompañamiento por un adulto responsable.
+*Brindar por parte del acompañante a los demás familiares los derechos y deberes del paciente, estos incluyen las normas de estancia hospitalaria',
+'El Hospital Infantil Santa Ana se compromete con los Pacientes y familiares, usuarios de los procesos misionales, realizar la prestación del servicio asistencial',
+'Contando con un Sistema de Gestión de la Calidad integrado que ofrezca confianza al paciente, familiares y a las partes interesadas (todo el equipo de salud, proveedores y comunidad), asegurando el cumplimiento de los requisitos legales, normativos u otros, gestionando los riesgos y mejorando continuamente la eficacia y eficiencia de los procesos.'
+),
+(
+'A solicitar o rechazar asistencia espiritual.',
+'COHERENCIA',
+'Cuidar de sus pertenencias, siempre y cuando su condición clínica se lo permita.
+*Ofrecer al paciente acompañamiento por un adulto responsable.
+*Brindar por parte del acompañante a los demás familiares los derechos y deberes del paciente, estos incluyen las normas de estancia hospitalaria',
+'El Hospital Infantil Santa Ana se compromete con los Pacientes y familiares, usuarios de los procesos misionales, realizar la prestación del servicio asistencial',
+'Contando con un Sistema de Gestión de la Calidad integrado que ofrezca confianza al paciente, familiares y a las partes interesadas (todo el equipo de salud, proveedores y comunidad), asegurando el cumplimiento de los requisitos legales, normativos u otros, gestionando los riesgos y mejorando continuamente la eficacia y eficiencia de los procesos.'
+),
+(
+'A recibir protección por parte de las autoridades competentes.',
+'COHERENCIA',
+'Cuidar de sus pertenencias, siempre y cuando su condición clínica se lo permita.
+*Ofrecer al paciente acompañamiento por un adulto responsable.
+*Brindar por parte del acompañante a los demás familiares los derechos y deberes del paciente, estos incluyen las normas de estancia hospitalaria',
+'El Hospital Infantil Santa Ana se compromete con los Pacientes y familiares, usuarios de los procesos misionales, realizar la prestación del servicio asistencial',
+'Contando con un Sistema de Gestión de la Calidad integrado que ofrezca confianza al paciente, familiares y a las partes interesadas (todo el equipo de salud, proveedores y comunidad), asegurando el cumplimiento de los requisitos legales, normativos u otros, gestionando los riesgos y mejorando continuamente la eficacia y eficiencia de los procesos.'
+),
+(
+'A la información sobre los costos económicos y sobre la seguridad social, relativas a su situación particular',
+'COHERENCIA',
+'Cuidar de sus pertenencias, siempre y cuando su condición clínica se lo permita.
+*Ofrecer al paciente acompañamiento por un adulto responsable.
+*Brindar por parte del acompañante a los demás familiares los derechos y deberes del paciente, estos incluyen las normas de estancia hospitalaria',
+'El Hospital Infantil Santa Ana se compromete con los Pacientes y familiares, usuarios de los procesos misionales, realizar la prestación del servicio asistencial',
+'Contando con un Sistema de Gestión de la Calidad integrado que ofrezca confianza al paciente, familiares y a las partes interesadas (todo el equipo de salud, proveedores y comunidad), asegurando el cumplimiento de los requisitos legales, normativos u otros, gestionando los riesgos y mejorando continuamente la eficacia y eficiencia de los procesos.
+'
+),
+(
+'A recibir una atención segura y de excelente calidad.',
+'COMPROMISO-VOCACIÓN DE SERVICIO',
+ '*Asistir puntualmente a las citas programadas.
+*Suministrar la información clara y confiable para su atención y colaborar en todos los aspectos relacionados con el cuidado  y tratamiento de la enfermedad.',
+'Calidad Técnico Científica',
+'Es el tener un recurso humano competente que aplique el conocimiento científico, con la tecnología adecuada,  asegurando permanentemente la pertinencia, la continuidad y el control de los riesgos y así realizar la prestación del servicio de manera confiable '
+),
+(
+'A recibir información clara, oportuna y eficaz en todo lo relativo a su enfermedad y tratamiento',
+'COMPROMISO-VOCACIÓN DE SERVICIO',
+ '*Asistir puntualmente a las citas programadas.
+*Suministrar la información clara y confiable para su atención y colaborar en todos los aspectos relacionados con el cuidado  y tratamiento de la enfermedad.',
+'Calidad Técnico Científica',
+'Es el tener un recurso humano competente que aplique el conocimiento científico, con la tecnología adecuada,  asegurando permanentemente la pertinencia, la continuidad y el control de los riesgos y así realizar la prestación del servicio de manera confiable '
+),
+(
+'A recibir atención interdisciplinaria si así lo requiere.',
+'COMPROMISO-VOCACIÓN DE SERVICIO',
+ '*Asistir puntualmente a las citas programadas.
+*Suministrar la información clara y confiable para su atención y colaborar en todos los aspectos relacionados con el cuidado  y tratamiento de la enfermedad.
+',
+'Calidad Técnico Científica',
+'Es el tener un recurso humano competente que aplique el conocimiento científico, con la tecnología adecuada,  asegurando permanentemente la pertinencia, la continuidad y el control de los riesgos y así realizar la prestación del servicio de manera confiable'
+),
+(
+'A solicitar una segunda opinión por otro profesional del área de la salud y comentársela al médico tratante.',
+'COMPROMISO-VOCACIÓN DE SERVICIO',
+ '*Asistir puntualmente a las citas programadas.
+*Suministrar la información clara y confiable para su atención y colaborar en todos los aspectos relacionados con el cuidado  y tratamiento de la enfermedad.',
+'Calidad Técnico Científica',
+'Es el tener un recurso humano competente que aplique el conocimiento científico, con la tecnología adecuada,  asegurando permanentemente la pertinencia, la continuidad y el control de los riesgos y así realizar la prestación del servicio de manera confiable'
+),
+(
+'A decidir si participa o no en actividades de docencia y de investigación',
+'COMPROMISO-VOCACIÓN DE SERVICIO',
+ '*Asistir puntualmente a las citas programadas.
+*Suministrar la información clara y confiable para su atención y colaborar en todos los aspectos relacionados con el cuidado  y tratamiento de la enfermedad.',
+'Calidad Técnico Científica',
+'Es el tener un recurso humano competente que aplique el conocimiento científico, con la tecnología adecuada,  asegurando permanentemente la pertinencia, la continuidad y el control de los riesgos y así realizar la prestación del servicio de manera confiable'
+),
+(
+'A ser escuchado.',
+'RESPETO-EQUIDAD',
+'Brindar un trato respetuoso al personal de la institución, a los demás pacientes y sus acompañantes.',
+'Trato humanizado centrado en el paciente',
+'Es Prestar un servicio, reconociendo al paciente, familia o responsable como un ser humano:
+- Brindándole un trato amable, cordial
+- Suministrándole una información clara
+- Llamándolo por su nombre
+- Velando por la privacidad
+- Atendiendo sus solicitudes
+- Velando por el cumplimiento de los derechos del paciente
+
+*Realizando una atención centrada en el paciente, identificando sus problemas y necesidades y darles la mejor solución posible; obteniendo los mejores resultados en él y su seguridad
+
+* Desarrollando al talento humano del hospital con formación personal basado en valores, vocación del servicio articulado a la filosofía corporativa del hospital'
+),
+(
+'A un trato amable, respetuoso y cordial por parte del personal.',
+'RESPETO-EQUIDAD',
+'Brindar un trato respetuoso al personal de la institución, a los demás pacientes y sus acompañantes.',
+'Trato humanizado centrado en el paciente',
+'Es Prestar un servicio, reconociendo al paciente, familia o responsable como un ser humano:
+- Brindándole un trato amable, cordial
+- Suministrándole una información clara
+- Llamándolo por su nombre
+- Velando por la privacidad
+- Atendiendo sus solicitudes
+- Velando por el cumplimiento de los derechos del paciente
+
+*Realizando una atención centrada en el paciente, identificando sus problemas y necesidades y darles la mejor solución posible; obteniendo los mejores resultados en él y su seguridad
+
+* Desarrollando al talento humano del hospital con formación personal basado en valores, vocación del servicio articulado a la filosofía corporativa del hospital'
+),
+(
+'A ser llamado por su nombre',
+'RESPETO-EQUIDAD',
+'Brindar un trato respetuoso al personal de la institución, a los demás pacientes y sus acompañantes.',
+'Trato humanizado centrado en el paciente',
+'Es Prestar un servicio, reconociendo al paciente, familia o responsable como un ser humano:
+- Brindándole un trato amable, cordial
+- Suministrándole una información clara
+- Llamándolo por su nombre
+- Velando por la privacidad
+- Atendiendo sus solicitudes
+- Velando por el cumplimiento de los derechos del paciente
+
+*Realizando una atención centrada en el paciente, identificando sus problemas y necesidades y darles la mejor solución posible; obteniendo los mejores resultados en él y su seguridad
+
+* Desarrollando al talento humano del hospital con formación personal basado en valores, vocación del servicio articulado a la filosofía corporativa del hospital'
+),
+(
+'Hacer respetar su personalidad, sin discriminación de raza, género, política, cultura o religión',
+'RESPETO-EQUIDAD',
+'Brindar un trato respetuoso al personal de la institución, a los demás pacientes y sus acompañantes.',
+'Trato humanizado centrado en el paciente',
+'Es Prestar un servicio, reconociendo al paciente, familia o responsable como un ser humano:
+- Brindándole un trato amable, cordial
+- Suministrándole una información clara
+- Llamándolo por su nombre
+- Velando por la privacidad
+- Atendiendo sus solicitudes
+- Velando por el cumplimiento de los derechos del paciente
+
+*Realizando una atención centrada en el paciente, identificando sus problemas y necesidades y darles la mejor solución posible; obteniendo los mejores resultados en él y su seguridad
+
+* Desarrollando al talento humano del hospital con formación personal basado en valores, vocación del servicio articulado a la filosofía corporativa del hospital'
+);
+GO
 
 ------------------------------------------------------------
 --- # Inserción en tablas de usuarios

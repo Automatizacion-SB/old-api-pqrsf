@@ -27,6 +27,7 @@ const {
   TipoIdentificacion,
   TipoIdentificacionSchema,
 } = require('./referencias/tipoIdentificacion.model');
+const { Derechos, DerechosSchema } = require('./referencias/derechos.model');
 const { Peticionario, PeticionarioSchema } = require('./peticionario.model');
 const { Paciente, PacienteSchema } = require('./paciente.model');
 const { Peticion, PeticionSchema } = require('./peticion.model');
@@ -49,6 +50,7 @@ function setUpModels(sequelize) {
   Estado.init(ReferenciaGeneralSchema, Estado.config(sequelize));
   Complejidad.init(ComplejidadSchema, Complejidad.config(sequelize));
   Calidad.init(ReferenciaGeneralSchema, Calidad.config(sequelize));
+  Derechos.init(DerechosSchema, Derechos.config(sequelize));
 
   Peticion.init(PeticionSchema, Peticion.config(sequelize));
   Usuario.init(UsuarioSchema, Usuario.config(sequelize));
