@@ -168,6 +168,15 @@ const PeticionSchema = {
 
 class Peticion extends Model {
   static associates(models) {
+    this.belongsTo(models.Estado, { as: 'estado' });
+    this.belongsTo(models.TipoPeticion, { as: 'tipoPeticion' });
+    this.belongsTo(models.Servicio, { as: 'servicio' });
+    this.belongsTo(models.Area, { as: 'area' });
+    this.belongsTo(models.Canal, { as: 'canal' });
+    this.belongsTo(models.ClasePeticion, { as: 'clasePeticion' });
+    this.belongsTo(models.Complejidad, { as: 'complejidad' });
+    this.belongsTo(models.Calidad, { as: 'calidad' });
+
     this.hasOne(models.Peticionario, {
       as: 'peticionario',
       foreignKey: 'peticionId',

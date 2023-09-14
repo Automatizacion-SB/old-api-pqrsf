@@ -12,7 +12,18 @@ class PeticionService {
 
   async findOne(id) {
     const peticion = await models.Peticion.findByPk(id, {
-      include: ['peticionario', 'paciente'],
+      include: [
+        'peticionario',
+        'paciente',
+        'servicio',
+        'estado',
+        'tipoPeticion',
+        'area',
+        'canal',
+        'clasePeticion',
+        'complejidad',
+        'calidad',
+      ],
     });
 
     if (!peticion) throw boom.notFound('Peticion no encontrada');
@@ -26,14 +37,6 @@ class PeticionService {
     });
 
     return peticionCreada;
-  }
-
-  async delete(id) {
-    const peticionBorrada = 'borrado' + id;
-
-    if (!peticionBorrada) throw boom.notFound('Peticion no encontrada');
-
-    return peticionBorrada;
   }
 }
 

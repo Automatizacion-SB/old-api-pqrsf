@@ -71,6 +71,7 @@ const createPQRSFSchema = Joi.object({
 
 const updatePeticionSchema = Joi.object({
   // información de la gestión
+  estadoId,
   seGestiono,
   radicado,
   fechaDiligencia,
