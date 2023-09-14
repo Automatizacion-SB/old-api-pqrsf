@@ -30,6 +30,9 @@ const calidadId = Joi.number().integer();
 const derechoId = Joi.number().integer();
 const peticionId = Joi.number().integer();
 
+const limit = Joi.number();
+const offset = Joi.number();
+
 const getPeticionSchema = Joi.object({
   id: id.required(),
 });
@@ -93,10 +96,16 @@ const addItemSchema = Joi.object({
   derechoId: derechoId.required(),
 });
 
+const queryParamsSchema = Joi.object({
+  limit,
+  offset,
+});
+
 module.exports = {
   getPeticionSchema,
   createPeticionSchema,
   updatePeticionSchema,
   createPQRSFSchema,
   addItemSchema,
+  queryParamsSchema,
 };

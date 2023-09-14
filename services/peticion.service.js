@@ -3,8 +3,15 @@ const boom = require('@hapi/boom');
 const { models } = require('../libs/sequelize');
 
 class PeticionService {
-  async find() {
-    const peticiones = await models.Peticion.findAll();
+  async find(query) {
+    const options = {};
+
+    const { limit, offset } = query;
+    if (limit && offset) {
+      (options.limit = limit), (options.offset = offset);
+    }
+
+    const peticiones = await models.Peticion.findAll(options);
 
     if (!peticiones) throw boom.notFound('Peticion no encontrada');
 
@@ -36,10 +43,14 @@ class PeticionService {
   async create(data) {
     const peticion = this.gestionarPeticion(data);
 
-    const peticionCreada = await models.Peticion.create(peticion, {
-      include: ['peticionario', 'paciente'],
-    });
-    return peticionCreada;
+    try {
+      const peticionCreada = await models.Peticion.create(peticion, {
+        include: ['peticionario', 'paciente'],
+      });
+      return peticionCreada;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async update(id, change) {
@@ -84,6 +95,8 @@ class PeticionService {
 
       peticion.dueDate = fecha.toISOString();
     }
+
+    console.log(peticion);
 
     return peticion;
   }

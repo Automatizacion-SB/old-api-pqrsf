@@ -6,21 +6,26 @@ const {
   createPeticionSchema,
   updatePeticionSchema,
   addItemSchema,
+  queryParamsSchema,
 } = require('../schemas/peticion.schema');
 
 const router = express.Router();
 const service = new PeticionService();
 
 router
-  .get('/', async (req, res, next) => {
-    try {
-      const peticiones = await service.find();
+  .get(
+    '/',
+    validatorHandler(queryParamsSchema, 'query'),
+    async (req, res, next) => {
+      try {
+        const peticiones = await service.find(req.query);
 
-      res.json(peticiones);
-    } catch (error) {
-      next(error);
-    }
-  })
+        res.json(peticiones);
+      } catch (error) {
+        next(error);
+      }
+    },
+  )
 
   .get(
     '/:id',
