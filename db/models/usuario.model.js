@@ -41,8 +41,8 @@ const UsuarioSchema = {
 };
 
 class Usuario extends Model {
-  static associates() {
-    //associates
+  static associates(models) {
+    this.hasMany(models.Peticion, { as: 'peticiones', foreignKey: 'liderId' });
   }
 
   static config(sequelize) {

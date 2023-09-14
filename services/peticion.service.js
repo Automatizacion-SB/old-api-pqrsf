@@ -33,19 +33,20 @@ class PeticionService {
   }
 
   async create(data) {
-    const peticionCreada = await models.Peticion.create(data, {
+    const peticion = this.gestionarPeticion(data);
+
+    const peticionCreada = await models.Peticion.create(peticion, {
       include: ['peticionario', 'paciente'],
     });
-
-    if (!peticionCreada) throw boom.notFound('Peticion no encontrada');
-
     return peticionCreada;
   }
 
   async update(id, change) {
     const peticion = await this.findOne(id);
 
-    const peticionActualizada = await peticion.update(change);
+    const cambios = await this.actualizarPeticion(peticion, change);
+
+    const peticionActualizada = await peticion.update(cambios);
 
     return peticionActualizada;
   }
@@ -56,6 +57,69 @@ class PeticionService {
     await peticion.destroy();
 
     return { id };
+  }
+
+  async gestionarPeticion(peticion) {
+    if (peticion.seGestiono) {
+      const radicado = await this.calcularNuevoRadicado();
+      peticion.radicado = radicado;
+    }
+
+    if (peticion.complejidadId) {
+      const complejidad = await models.Complejidad.findByPk(
+        peticion.complejidadId,
+      );
+
+      const { diasRestantes } = complejidad.dataValues;
+
+      let fecha = new Date();
+
+      fecha.setDate(fecha.getDate() + diasRestantes);
+
+      peticion.dueDate = fecha.toISOString();
+    }
+
+    return peticion;
+  }
+
+  async actualizarPeticion(peticion, change) {
+    if (peticion.seGestiono) {
+      const radicado = await this.calcularNuevoRadicado();
+      change.radicado = radicado;
+    }
+
+    if (peticion.complejidadId) {
+      const complejidad = await models.Complejidad.findByPk(
+        peticion.complejidadId,
+      );
+
+      const { diasRestantes } = complejidad.dataValues;
+
+      let fecha = new Date();
+
+      fecha.setDate(fecha.getDate() + diasRestantes);
+
+      change.dueDate = fecha.toISOString();
+    }
+
+    return peticion;
+  }
+
+  async calcularNuevoRadicado() {
+    const ultimaPeticionGestionada = await models.Peticion.findOne({
+      where: {
+        seGestiono: true,
+      },
+      order: [['radicado', 'DESC']],
+    });
+
+    console.log('hola');
+    if (ultimaPeticionGestionada) {
+      const ultimoRadicado = ultimaPeticionGestionada.radicado;
+      return ultimoRadicado + 1;
+    } else {
+      return 1;
+    }
   }
 }
 
