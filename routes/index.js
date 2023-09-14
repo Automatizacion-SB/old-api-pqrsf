@@ -5,6 +5,7 @@ const pqrsfRouter = require('./pqrsf.router');
 const referenciasRouter = require('./referencias.router');
 const usuariosRouter = require('./usuarios.router');
 const authRouter = require('./auth.router');
+const profileRouter = require('./profile.router');
 
 function routerApi(app) {
   const router = express.Router();
@@ -16,7 +17,8 @@ function routerApi(app) {
     .use('/pqrsf', pqrsfRouter)
     .use('/referencias', referenciasRouter)
     .use('/usuarios', usuariosRouter)
-    .use('/auth', authRouter);
+    .use('/auth', authRouter)
+    .use('/profile', profileRouter);
 }
 
 module.exports = routerApi;

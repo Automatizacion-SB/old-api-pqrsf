@@ -40,17 +40,23 @@ class PeticionService {
     return peticion;
   }
 
+  async findByUser(id) {
+    const peticiones = await models.Peticion.findAll({
+      where: {
+        liderId: id,
+      },
+    });
+
+    return peticiones;
+  }
+
   async create(data) {
     const peticion = this.gestionarPeticion(data);
 
-    try {
-      const peticionCreada = await models.Peticion.create(peticion, {
-        include: ['peticionario', 'paciente'],
-      });
-      return peticionCreada;
-    } catch (error) {
-      console.log(error);
-    }
+    const peticionCreada = await models.Peticion.create(peticion, {
+      include: ['peticionario', 'paciente'],
+    });
+    return peticionCreada;
   }
 
   async update(id, change) {
