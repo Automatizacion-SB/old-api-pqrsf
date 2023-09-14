@@ -1,8 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
 
-const DERECHOS_TABLE = 'derechos';
+const DERECHO_TABLE = 'derechos';
 
-const DerechosSchema = {
+const DerechoSchema = {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -32,17 +32,17 @@ const DerechosSchema = {
   },
 };
 
-class Derechos extends Model {
+class Derecho extends Model {
   static associates() {}
 
   static config(sequelize) {
     return {
       sequelize,
-      tableName: DERECHOS_TABLE,
-      modelName: 'Derechos',
+      tableName: DERECHO_TABLE,
+      modelName: 'Derecho',
       timestamps: false,
     };
   }
 }
 
-module.exports = { DERECHOS_TABLE, Derechos, DerechosSchema };
+module.exports = { DERECHO_TABLE, Derecho, DerechoSchema };

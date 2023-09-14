@@ -176,6 +176,12 @@ class Peticion extends Model {
     this.belongsTo(models.ClasePeticion, { as: 'clasePeticion' });
     this.belongsTo(models.Complejidad, { as: 'complejidad' });
     this.belongsTo(models.Calidad, { as: 'calidad' });
+    this.belongsToMany(models.Derecho, {
+      as: 'derechos',
+      through: models.PeticionDerecho,
+      foreignKey: 'peticionId',
+      otherKey: 'derechoId',
+    });
 
     this.hasOne(models.Peticionario, {
       as: 'peticionario',

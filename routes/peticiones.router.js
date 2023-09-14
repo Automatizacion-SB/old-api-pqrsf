@@ -5,6 +5,7 @@ const {
   getPeticionSchema,
   createPeticionSchema,
   updatePeticionSchema,
+  addItemSchema,
 } = require('../schemas/peticion.schema');
 
 const router = express.Router();
@@ -45,6 +46,22 @@ router
         const { body } = req;
 
         const peticionCreada = await service.create(body);
+
+        res.json(peticionCreada);
+      } catch (error) {
+        next(error);
+      }
+    },
+  )
+
+  .post(
+    '/add-item',
+    validatorHandler(addItemSchema, 'body'),
+    async (req, res, next) => {
+      try {
+        const { body } = req;
+
+        const peticionCreada = await service.addItem(body);
 
         res.json(peticionCreada);
       } catch (error) {

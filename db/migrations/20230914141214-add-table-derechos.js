@@ -1,16 +1,16 @@
 'use strict';
 
 const {
-  DERECHOS_TABLE,
-  DerechosSchema,
-} = require('../models/referencias/derechos.model');
+  DERECHO_TABLE,
+  DerechoSchema,
+} = require('../models/referencias/derecho.model');
 
 module.exports = {
   async up(queryInterface) {
-    await queryInterface.createTable(DERECHOS_TABLE, DerechosSchema);
+    await queryInterface.createTable(DERECHO_TABLE, DerechoSchema);
   },
 
   async down(queryInterface) {
-    await queryInterface.dropTable(DERECHOS_TABLE);
+    await queryInterface.dropTable(DERECHO_TABLE);
   },
 };

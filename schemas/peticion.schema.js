@@ -27,6 +27,9 @@ const descripcionGestion = Joi.string();
 const fechaRespuesta = Joi.date();
 const calidadId = Joi.number().integer();
 
+const derechoId = Joi.number().integer();
+const peticionId = Joi.number().integer();
+
 const getPeticionSchema = Joi.object({
   id: id.required(),
 });
@@ -85,9 +88,15 @@ const updatePeticionSchema = Joi.object({
   calidadId,
 });
 
+const addItemSchema = Joi.object({
+  peticionId: peticionId.required(),
+  derechoId: derechoId.required(),
+});
+
 module.exports = {
   getPeticionSchema,
   createPeticionSchema,
   updatePeticionSchema,
   createPQRSFSchema,
+  addItemSchema,
 };

@@ -24,6 +24,7 @@ class PeticionService {
         'clasePeticion',
         'complejidad',
         'calidad',
+        'derechos',
       ],
     });
 
@@ -49,6 +50,11 @@ class PeticionService {
     const peticionActualizada = await peticion.update(cambios);
 
     return peticionActualizada;
+  }
+
+  async addItem(data) {
+    const newItem = await models.PeticionDerecho.create(data);
+    return newItem;
   }
 
   async delete(id) {
