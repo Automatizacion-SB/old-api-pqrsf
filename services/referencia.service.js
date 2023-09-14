@@ -1,8 +1,10 @@
 const boom = require('@hapi/boom');
 
+const { models } = require('../libs/sequelize');
+
 class ReferenciaService {
   async findTiposIdentificacion() {
-    const referencias = 'hola';
+    const referencias = await models.TipoIdentificacion.findAll();
 
     if (!referencias) throw boom.notFound('Referencia no encontrada');
 
@@ -10,7 +12,7 @@ class ReferenciaService {
   }
 
   async findEps() {
-    const referencias = 'hola';
+    const referencias = await models.Eps.findAll();
 
     if (!referencias) throw boom.notFound('Referencia no encontrada');
 
@@ -18,7 +20,7 @@ class ReferenciaService {
   }
 
   async findRegimenes() {
-    const referencias = 'hola';
+    const referencias = await models.Regimen.findAll();
 
     if (!referencias) throw boom.notFound('Referencia no encontrada');
 
@@ -26,7 +28,7 @@ class ReferenciaService {
   }
 
   async findServicios() {
-    const referencias = 'hola';
+    const referencias = await models.Servicio.findAll();
 
     if (!referencias) throw boom.notFound('Referencia no encontrada');
 
@@ -34,7 +36,7 @@ class ReferenciaService {
   }
 
   async findCanales() {
-    const referencias = 'hola';
+    const referencias = await models.Canal.findAll();
 
     if (!referencias) throw boom.notFound('Referencia no encontrada');
 
@@ -42,7 +44,7 @@ class ReferenciaService {
   }
 
   async findClasesPeticion() {
-    const referencias = 'hola';
+    const referencias = await models.ClasePeticion.findAll();
 
     if (!referencias) throw boom.notFound('Referencia no encontrada');
 
@@ -50,7 +52,7 @@ class ReferenciaService {
   }
 
   async findTiposPeticion() {
-    const referencias = 'hola';
+    const referencias = await models.TipoPeticion.findAll();
 
     if (!referencias) throw boom.notFound('Referencia no encontrada');
 
@@ -58,7 +60,7 @@ class ReferenciaService {
   }
 
   async findComplejidad() {
-    const referencias = 'hola';
+    const referencias = await models.Complejidad.findAll();
 
     if (!referencias) throw boom.notFound('Referencia no encontrada');
 
@@ -66,7 +68,7 @@ class ReferenciaService {
   }
 
   async findAreas() {
-    const referencias = 'hola';
+    const referencias = await models.Area.findAll();
 
     if (!referencias) throw boom.notFound('Referencia no encontrada');
 
@@ -74,7 +76,7 @@ class ReferenciaService {
   }
 
   async findEstados() {
-    const referencias = 'hola';
+    const referencias = await models.Estado.findAll();
 
     if (!referencias) throw boom.notFound('Referencia no encontrada');
 
@@ -82,7 +84,7 @@ class ReferenciaService {
   }
 
   async findCalidad() {
-    const referencias = 'hola';
+    const referencias = await models.Calidad.findAll();
 
     if (!referencias) throw boom.notFound('Referencia no encontrada');
 
@@ -90,7 +92,7 @@ class ReferenciaService {
   }
 
   async findDepartamos() {
-    const referencias = 'hola';
+    const referencias = await models.Departamento.findAll();
 
     if (!referencias) throw boom.notFound('Referencia no encontrada');
 

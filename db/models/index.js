@@ -44,7 +44,7 @@ function setUpModels(sequelize) {
   Canal.init(ReferenciaGeneralSchema, Canal.config(sequelize));
   ClasePeticion.init(ReferenciaGeneralSchema, ClasePeticion.config(sequelize));
   Estado.init(ReferenciaGeneralSchema, Canal.config(sequelize));
-  Complejidad.init(ComplejidadSchema, Complejidad.Complejidad(sequelize));
+  Complejidad.init(ComplejidadSchema, Complejidad.config(sequelize));
   Calidad.init(ReferenciaGeneralSchema, Calidad.config(sequelize));
 
   Usuario.init(UsuarioSchema, Usuario.config(sequelize));
