@@ -8,8 +8,9 @@ const {
   boomErrorHandler,
   errorHandler,
 } = require('./middlewares/error.handler');
+const { config } = require('dotenv');
 
-const PORT = 3000;
+const PORT = config.port;
 
 const app = express();
 
