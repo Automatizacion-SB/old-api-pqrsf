@@ -25,7 +25,7 @@ const respuesta = Joi.string();
 const seDioRespuesta = Joi.boolean().truthy(1).falsy(0);
 const descripcionGestion = Joi.string();
 const fechaRespuesta = Joi.date();
-const calidad = Joi.number().integer();
+const calidadId = Joi.number().integer();
 
 const getPeticionSchema = Joi.object({
   id: id.required(),
@@ -53,7 +53,7 @@ const createPeticionSchema = Joi.object({
   seDioRespuesta,
   descripcionGestion,
   fechaRespuesta,
-  calidad,
+  calidadId,
 });
 
 const createPQRSFSchema = Joi.object({
@@ -81,7 +81,7 @@ const updatePeticionSchema = Joi.object({
   seDioRespuesta,
   descripcionGestion,
   fechaRespuesta,
-  calidad,
+  calidadId,
 });
 
 module.exports = {
