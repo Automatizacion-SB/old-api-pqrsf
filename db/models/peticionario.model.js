@@ -47,7 +47,9 @@ const PeticionarioSchema = {
   },
 };
 class Peticionario extends Model {
-  static associates() {}
+  static associates(models) {
+    this.belongsTo(models.Peticion, { as: 'peticion' });
+  }
 
   static config(sequelize) {
     return {

@@ -54,6 +54,11 @@ function setUpModels(sequelize) {
   Usuario.init(UsuarioSchema, Usuario.config(sequelize));
   Peticionario.init(PeticionarioSchema, Peticionario.config(sequelize));
   Paciente.init(PacienteSchema, Paciente.config(sequelize));
+
+  Peticion.associates(sequelize.models);
+  Usuario.associates(sequelize.models);
+  Peticionario.associates(sequelize.models);
+  Paciente.associates(sequelize.models);
 }
 
 module.exports = setUpModels;

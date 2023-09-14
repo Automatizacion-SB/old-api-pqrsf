@@ -167,7 +167,13 @@ const PeticionSchema = {
 };
 
 class Peticion extends Model {
-  static associates() {}
+  static associates(models) {
+    this.hasOne(models.Peticionario, {
+      as: 'peticionario',
+      foreignKey: 'peticionId',
+    });
+    this.hasOne(models.Paciente, { as: 'paciente', foreignKey: 'peticionId' });
+  }
 
   static config(sequelize) {
     return {

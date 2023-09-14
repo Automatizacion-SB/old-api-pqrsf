@@ -20,66 +20,68 @@ const PacienteSchema = {
       model: PETICION_TABLE,
       key: 'id',
     },
-    id: {
-      type: DataTypes.STRING(17),
-      primaryKey: true,
-      allowNull: false,
+  },
+  id: {
+    type: DataTypes.STRING(17),
+    primaryKey: true,
+    allowNull: false,
+  },
+  tipoId: {
+    field: 'tipo_id',
+    type: DataTypes.STRING(2),
+    allowNull: false,
+    references: { model: TIPO_IDENTIFICACION_TABLE, key: 'id' },
+  },
+  nombre: {
+    type: DataTypes.STRING(125),
+    allowNull: false,
+  },
+  apellido: {
+    type: DataTypes.STRING(125),
+    allowNull: false,
+  },
+  epsId: {
+    field: 'eps_id',
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: EPS_TABLE,
+      key: 'id',
     },
-    tipoId: {
-      field: 'tipo_id',
-      type: DataTypes.STRING(2),
-      allowNull: false,
-      references: { model: TIPO_IDENTIFICACION_TABLE, key: 'id' },
+  },
+  regimenId: {
+    field: 'regimen_id',
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: REGIMEN_TABLE,
+      key: 'id',
     },
-    nombre: {
-      type: DataTypes.STRING(125),
-      allowNull: false,
+  },
+  departamentoId: {
+    field: 'departamento_id',
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: DEPARTAMENTO_TABLE,
+      key: 'id',
     },
-    apellido: {
-      type: DataTypes.STRING(125),
-      allowNull: false,
-    },
-    epsId: {
-      field: 'eps_id',
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: EPS_TABLE,
-        key: 'id',
-      },
-    },
-    regimenId: {
-      field: 'regimen_id',
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: REGIMEN_TABLE,
-        key: 'id',
-      },
-    },
-    departamentoId: {
-      field: 'departamento_id',
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: DEPARTAMENTO_TABLE,
-        key: 'id',
-      },
-    },
-    municipioId: {
-      field: 'municipio_id',
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: MUNICIPIO_TABLE,
-        key: 'id',
-      },
+  },
+  municipioId: {
+    field: 'municipio_id',
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: MUNICIPIO_TABLE,
+      key: 'id',
     },
   },
 };
 
 class Paciente extends Model {
-  static associates() {}
+  static associates(models) {
+    this.belongsTo(models.Peticion, { as: 'peticion' });
+  }
 
   static config(sequelize) {
     return {
