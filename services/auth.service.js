@@ -16,6 +16,7 @@ class AuthService {
     if (!isMatch) throw boom.unauthorized();
 
     delete user.dataValues.password;
+    delete user.dataValues.recoveryToken;
     return user;
   }
 
@@ -31,9 +32,6 @@ class AuthService {
     };
   }
   async sendMail(message) {
-    // const user = await service.findByEmail(email);
-    // if (!user) throw boom.unauthorized();
-
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
       secure: true,
@@ -73,6 +71,27 @@ class AuthService {
     const result = await this.sendMail(message);
 
     return result;
+  }
+
+  async changePassword(token, newPassword) {
+    try {
+      const payload = jwt.verify(token, config.jwtSecret);
+      const user = await service.findOne(payload.sub);
+
+      if (user.recoveryToken != token) throw boom.unauthorized();
+
+      const hash = await bcrypt.hash(newPassword, 10);
+      await service.update(user.id, {
+        password: hash,
+        recoveryToken: null,
+      });
+
+      return {
+        message: 'contraseña cambiada exitosamente',
+      };
+    } catch (error) {
+      throw boom.unauthorized();
+    }
   }
 }
 
