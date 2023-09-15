@@ -93,6 +93,40 @@ class AuthService {
       throw boom.unauthorized();
     }
   }
+
+  async sendNotificacionPeticion(peticion) {
+    const {
+      liderId,
+      motivo,
+      dueDate,
+      fechaEnvioResponsableArea,
+      fechaRecepcion,
+    } = peticion;
+
+    const lider = await service.findOne(liderId);
+
+    const message = {
+      from: config.smtpEmail,
+      to: `${lider.email}`,
+      subject: 'Nueva PQRSF asignada',
+      html: `
+      <body>
+        <p>Buenas tardes, ${lider.nombre} ${lider.apellido}</p>
+        <p>
+          Se le informa que tiene una nueva PQRSF asignada pendiente por dar respuesta
+        </p>
+        <hr />
+        <h3>Información relevante de la PQRSF</h3>
+        <p>Motivo: ${motivo}</p>
+        <p>Fecha de Vencimiento: ${dueDate.toDateString()}</p>
+        <p>Fecha de recepción: ${fechaRecepcion.toDateString()}</p>
+        <p>Fecha de envio: ${fechaEnvioResponsableArea}</p>
+      </body>
+      `,
+    };
+
+    await this.sendMail(message);
+  }
 }
 
 module.exports = AuthService;

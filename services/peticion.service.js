@@ -1,7 +1,9 @@
 const boom = require('@hapi/boom');
 
 const { models } = require('../libs/sequelize');
+const AuthService = require('./auth.service');
 
+const emailService = new AuthService();
 class PeticionService {
   async find(query) {
     const options = {};
@@ -56,15 +58,24 @@ class PeticionService {
     const peticionCreada = await models.Peticion.create(peticion, {
       include: ['peticionario', 'paciente'],
     });
+
+    if (data.liderId) {
+      await emailService.sendNotificacionPeticion(peticionCreada);
+    }
+
     return peticionCreada;
   }
 
   async update(id, change) {
     const peticion = await this.findOne(id);
 
-    const cambios = await this.actualizarPeticion(peticion, change);
+    const newChange = await this.actualizarPeticion(peticion, change);
 
-    const peticionActualizada = await peticion.update(cambios);
+    const peticionActualizada = await peticion.update(newChange);
+
+    if (change.liderId) {
+      await emailService.sendNotificacionPeticion(peticionActualizada);
+    }
 
     return peticionActualizada;
   }
@@ -96,9 +107,7 @@ class PeticionService {
       const { diasRestantes } = complejidad.dataValues;
 
       let fecha = new Date();
-
       fecha.setDate(fecha.getDate() + diasRestantes);
-
       peticion.dueDate = fecha.toISOString();
     }
 
@@ -106,7 +115,7 @@ class PeticionService {
   }
 
   async actualizarPeticion(peticion, change) {
-    if (peticion.seGestiono) {
+    if (!peticion.seGestiono) {
       const radicado = await this.calcularNuevoRadicado();
       change.radicado = radicado;
     }
@@ -117,15 +126,11 @@ class PeticionService {
       );
 
       const { diasRestantes } = complejidad.dataValues;
-
       let fecha = new Date();
-
       fecha.setDate(fecha.getDate() + diasRestantes);
-
       change.dueDate = fecha.toISOString();
     }
-
-    return peticion;
+    return change;
   }
 
   async calcularNuevoRadicado() {
