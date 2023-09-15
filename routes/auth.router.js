@@ -24,8 +24,7 @@ router
   .post('/recovery', async (req, res, next) => {
     try {
       const { email } = req.body;
-      const result = 'hola' + email;
-      // await service.sendRecoveryPassword(email);
+      const result = await service.sendRecoveryPassword(email);
 
       res.json(result);
     } catch (error) {
