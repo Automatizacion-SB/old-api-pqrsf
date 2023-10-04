@@ -127,6 +127,16 @@ router
     }
   })
 
+  .get('/departamentos/:id/municipios', cacheInit, async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const referencias = await service.findMunicipiosByDepartamento(id);
+
+      res.json(referencias);
+    } catch (error) {
+      next(error);
+    }
+  })
   .get('/derechos_paciente', cacheInit, async (req, res, next) => {
     try {
       const referencias = await service.findDerechos();

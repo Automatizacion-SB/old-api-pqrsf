@@ -99,6 +99,17 @@ class ReferenciaService {
     return referencias;
   }
 
+  async findMunicipiosByDepartamento(id) {
+    const referencias = await models.Municipio.findAll({
+      where: {
+        departamentoId: id,
+      },
+    });
+
+    if (!referencias) throw boom.notFound('Referencia no encontrada');
+
+    return referencias;
+  }
   async findDerechos() {
     const referencias = await models.Derecho.findAll();
 
