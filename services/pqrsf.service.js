@@ -3,7 +3,10 @@ const boom = require('@hapi/boom');
 const { models } = require('../libs/sequelize');
 class PeticionService {
   async find() {
-    const peticiones = await models.Peticion.findAll();
+    const peticiones = await models.Peticion.findAll({
+      attributes: ['id', 'fechaRecepcion'],
+      include: ['estado', 'tipoPeticion'],
+    });
 
     if (!peticiones) throw boom.notFound('Peticion no encontrada');
 
