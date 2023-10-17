@@ -91,6 +91,19 @@ class ReferenciaService {
     return referencias;
   }
 
+  async findLideres() {
+    const referencias = await models.Usuario.findAll({
+      attributes: ['id', 'cargo'],
+      where: {
+        role: 'lider',
+      },
+    });
+
+    if (!referencias) throw boom.notFound('Referencia no encontrada');
+
+    return referencias;
+  }
+
   async findDepartamos() {
     const referencias = await models.Departamento.findAll();
 

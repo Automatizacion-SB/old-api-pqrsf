@@ -81,6 +81,10 @@ const PacienteSchema = {
 class Paciente extends Model {
   static associates(models) {
     this.belongsTo(models.Peticion, { as: 'peticion' });
+    this.belongsTo(models.Eps, { as: 'eps' });
+    this.belongsTo(models.Regimen, { as: 'regimen' });
+    this.belongsTo(models.Departamento, { as: 'departamento' });
+    this.belongsTo(models.Municipio, { as: 'municipio' });
   }
 
   static config(sequelize) {

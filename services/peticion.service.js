@@ -26,8 +26,13 @@ class PeticionService {
   async findOne(id) {
     const peticion = await models.Peticion.findByPk(id, {
       include: [
+        {
+          model: models.Paciente,
+          as: 'paciente',
+          include: ['eps', 'regimen', 'departamento', 'municipio'],
+        },
+        // 'paciente',
         'peticionario',
-        'paciente',
         'servicio',
         'estado',
         'tipoPeticion',

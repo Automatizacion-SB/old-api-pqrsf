@@ -117,6 +117,16 @@ router
     }
   })
 
+  .get('/lideres', cacheInit, async (req, res, next) => {
+    try {
+      const referencias = await service.findLideres();
+
+      res.json(referencias);
+    } catch (error) {
+      next(error);
+    }
+  })
+
   .get('/departamentos', cacheInit, async (req, res, next) => {
     try {
       const referencias = await service.findDepartamos();
