@@ -13,7 +13,10 @@ class PeticionService {
       (options.limit = limit), (options.offset = offset);
     }
 
-    const peticiones = await models.Peticion.findAll(options);
+    // const peticiones = await models.Peticion.findAll(options);
+    const peticiones = await models.Peticion.findAll({
+      include: ['estado', 'tipoPeticion'],
+    });
 
     if (!peticiones) throw boom.notFound('Peticion no encontrada');
 
