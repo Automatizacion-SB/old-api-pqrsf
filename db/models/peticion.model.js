@@ -173,6 +173,7 @@ class Peticion extends Model {
     this.belongsTo(models.Servicio, { as: 'servicio' });
     this.belongsTo(models.Area, { as: 'area' });
     this.belongsTo(models.Canal, { as: 'canal' });
+    this.belongsTo(models.Usuario, { as: 'lider' });
     this.belongsTo(models.ClasePeticion, { as: 'clasePeticion' });
     this.belongsTo(models.Complejidad, { as: 'complejidad' });
     this.belongsTo(models.Calidad, { as: 'calidad' });

@@ -4,8 +4,8 @@ const { models } = require('../libs/sequelize');
 class PeticionService {
   async find() {
     const peticiones = await models.Peticion.findAll({
-      attributes: ['id', 'fechaRecepcion'],
-      include: ['estado', 'tipoPeticion'],
+      attributes: ['id', 'radicado', 'fechaRecepcion'],
+      include: ['estado', 'tipoPeticion', 'lider'],
     });
 
     if (!peticiones) throw boom.notFound('Peticion no encontrada');
