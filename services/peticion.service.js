@@ -52,6 +52,7 @@ class PeticionService {
 
   async findByUser(id) {
     const peticiones = await models.Peticion.findAll({
+      include: ['estado', 'tipoPeticion'],
       where: {
         liderId: id,
       },
