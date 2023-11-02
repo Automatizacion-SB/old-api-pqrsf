@@ -52,7 +52,7 @@ class PeticionService {
 
   async findByUser(id) {
     const peticiones = await models.Peticion.findAll({
-      include: ['estado', 'tipoPeticion'],
+      include: ['estado', 'tipoPeticion', 'paciente', 'peticionario'],
       where: {
         liderId: id,
       },
@@ -60,21 +60,37 @@ class PeticionService {
 
     return peticiones;
   }
-
   async create(data) {
-    const peticion = this.gestionarPeticion(data);
+    const sequelize = models.Peticion.sequelize; // Obtiene la instancia de Sequelize
 
-    const peticionCreada = await models.Peticion.create(peticion, {
-      include: ['peticionario', 'paciente'],
-    });
+    try {
+      // Deshabilita el trigger antes de la operación DML
+      await sequelize.query(
+        'DISABLE TRIGGER tr_peticiones_insert ON dbo.peticiones',
+      );
 
-    if (data.liderId) {
-      await emailService.sendNotificacionPeticion(peticionCreada);
+      // Realiza la operación DML (inserción de datos)
+      const peticion = await this.gestionarPeticion(data);
+      const peticionCreada = await models.Peticion.create(peticion, {
+        include: ['peticionario', 'paciente'],
+      });
+
+      if (data.liderId) {
+        await emailService.sendNotificacionPeticion(peticionCreada);
+      }
+
+      // Habilita el trigger nuevamente después de la operación DML
+      await sequelize.query(
+        'ENABLE TRIGGER tr_peticiones_insert ON dbo.peticiones',
+      );
+
+      return peticionCreada;
+    } catch (error) {
+      // Maneja errores aquí
+      console.error(error);
+      throw error;
     }
-
-    return peticionCreada;
   }
-
   async update(id, change) {
     const peticion = await this.findOne(id);
 

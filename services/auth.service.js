@@ -95,13 +95,7 @@ class AuthService {
   }
 
   async sendNotificacionPeticion(peticion) {
-    const {
-      liderId,
-      motivo,
-      dueDate,
-      fechaEnvioResponsableArea,
-      fechaRecepcion,
-    } = peticion;
+    const { liderId, motivo, fechaEnvioResponsableArea } = peticion;
 
     const lider = await service.findOne(liderId);
 
@@ -118,8 +112,6 @@ class AuthService {
         <hr />
         <h3>Información relevante de la PQRSF</h3>
         <p>Motivo: ${motivo}</p>
-        <p>Fecha de Vencimiento: ${dueDate.toDateString()}</p>
-        <p>Fecha de recepción: ${fechaRecepcion.toDateString()}</p>
         <p>Fecha de envio: ${fechaEnvioResponsableArea}</p>
       </body>
       `,

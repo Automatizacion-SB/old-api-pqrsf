@@ -70,7 +70,7 @@ router
   .post(
     '/add-item',
     passport.authenticate('jwt', { session: false }),
-    checkRole('atencion'),
+    // checkRole('atencion'),
     validatorHandler(addItemSchema, 'body'),
     async (req, res, next) => {
       try {
