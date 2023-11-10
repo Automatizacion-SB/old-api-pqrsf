@@ -2,6 +2,7 @@ const boom = require('@hapi/boom');
 
 const { models } = require('../libs/sequelize');
 const AuthService = require('./auth.service');
+const { Op } = require('sequelize');
 
 const emailService = new AuthService();
 class PeticionService {
@@ -15,7 +16,60 @@ class PeticionService {
 
     // const peticiones = await models.Peticion.findAll(options);
     const peticiones = await models.Peticion.findAll({
-      include: ['estado', 'tipoPeticion'],
+      include: [
+        {
+          model: models.Paciente,
+          as: 'paciente',
+          include: ['eps', 'regimen', 'departamento', 'municipio'],
+        },
+        'paciente',
+        'peticionario',
+        'servicio',
+        'estado',
+        'tipoPeticion',
+        'area',
+        'canal',
+        'clasePeticion',
+        'complejidad',
+        'calidad',
+        'derechos',
+        'lider',
+      ],
+    });
+
+    if (!peticiones) throw boom.notFound('Peticion no encontrada');
+
+    return peticiones;
+  }
+
+  async exportPeticiones(params) {
+    const { startDate, endDate } = params;
+
+    const peticiones = await models.Peticion.findAll({
+      where: {
+        fechaRecepcion: {
+          [Op.between]: [startDate, endDate],
+        },
+      },
+      include: [
+        {
+          model: models.Paciente,
+          as: 'paciente',
+          include: ['eps', 'regimen', 'departamento', 'municipio'],
+        },
+        'paciente',
+        'peticionario',
+        'servicio',
+        'estado',
+        'tipoPeticion',
+        'area',
+        'canal',
+        'clasePeticion',
+        'complejidad',
+        'calidad',
+        'derechos',
+        'lider',
+      ],
     });
 
     if (!peticiones) throw boom.notFound('Peticion no encontrada');
@@ -31,7 +85,7 @@ class PeticionService {
           as: 'paciente',
           include: ['eps', 'regimen', 'departamento', 'municipio'],
         },
-        // 'paciente',
+        'paciente',
         'peticionario',
         'servicio',
         'estado',

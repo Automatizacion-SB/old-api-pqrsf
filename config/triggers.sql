@@ -49,9 +49,8 @@ BEGIN
         radicado = @row_number
     FROM dbo.peticiones p
     JOIN inserted i ON p.id = i.id
-    WHERE i.se_gestiono = 1 AND i.radicado IS NULL;
+    WHERE i.se_gestiono = 1 AND i.radicado IS NULL AND p.radicado IS NULL;
 END;
-
 
 
 
@@ -70,7 +69,7 @@ BEGIN
             SELECT p.id, ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS RowNum
             FROM dbo.peticiones p
             INNER JOIN inserted i ON p.id = i.id
-            WHERE i.se_gestiono = 1 AND i.radicado IS NULL
+            WHERE i.se_gestiono = 1 AND i.radicado IS NULL AND p.radicado IS NULL
         )
         UPDATE p
         SET p.radicado = @max_radicado + u.RowNum

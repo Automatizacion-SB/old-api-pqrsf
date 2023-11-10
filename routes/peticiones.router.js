@@ -7,6 +7,7 @@ const {
   updatePeticionSchema,
   addItemSchema,
   queryParamsSchema,
+  exportDataParamsScheme,
 } = require('../schemas/peticion.schema');
 const passport = require('passport');
 const { checkRole } = require('../middlewares/auth.handler');
@@ -41,6 +42,22 @@ router
         const { id } = req.params;
 
         const peticion = await service.findOne(id);
+
+        res.json(peticion);
+      } catch (error) {
+        next(error);
+      }
+    },
+  )
+
+  .post(
+    '/export/xlsx',
+    passport.authenticate('jwt', { session: false }),
+    // checkRole('atencion'),
+    validatorHandler(exportDataParamsScheme, 'body'),
+    async (req, res, next) => {
+      try {
+        const peticion = await service.exportPeticiones(req.body);
 
         res.json(peticion);
       } catch (error) {

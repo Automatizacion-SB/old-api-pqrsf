@@ -30,6 +30,9 @@ const calidadId = Joi.number().integer();
 const derechoId = Joi.number().integer();
 const peticionId = Joi.number().integer();
 
+const startDate = Joi.date();
+const endDate = Joi.date();
+
 const limit = Joi.number();
 const offset = Joi.number();
 
@@ -96,6 +99,11 @@ const addItemSchema = Joi.object({
   derechoId: derechoId.required(),
 });
 
+const exportDataParamsScheme = Joi.object({
+  startDate: startDate.required(),
+  endDate: endDate.required(),
+});
+
 const queryParamsSchema = Joi.object({
   limit,
   offset,
@@ -108,4 +116,5 @@ module.exports = {
   createPQRSFSchema,
   addItemSchema,
   queryParamsSchema,
+  exportDataParamsScheme,
 };

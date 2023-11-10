@@ -1,6 +1,8 @@
 const boom = require('@hapi/boom');
 
 const { models } = require('../libs/sequelize');
+const sequelize = require('../libs/sequelize');
+
 class PeticionService {
   async find() {
     const peticiones = await models.Peticion.findAll({
@@ -31,9 +33,19 @@ class PeticionService {
   }
 
   async create(data) {
+    // Deshabilita el trigger antes de la operación DML
+    await sequelize.query(
+      'DISABLE TRIGGER tr_peticiones_insert ON dbo.peticiones',
+    );
+
     const peticionCreada = await models.Peticion.create(data, {
       include: ['peticionario', 'paciente'],
     });
+
+    // Habilita el trigger nuevamente después de la operación DML
+    await sequelize.query(
+      'ENABLE TRIGGER tr_peticiones_insert ON dbo.peticiones',
+    );
 
     return peticionCreada;
   }

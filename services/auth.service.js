@@ -54,8 +54,7 @@ class AuthService {
     const payload = { sub: user.id };
     const token = jwt.sign(payload, config.jwtSecret, { expiresIn: '15min' });
 
-    const link = `http://myfront.com/recovery?token=${token}
-    con el token ${token}`;
+    const link = `http://localhost:5173/recovery?token=${token}`;
 
     await service.update(user.id, {
       recoveryToken: token,
@@ -101,8 +100,11 @@ class AuthService {
 
     const message = {
       from: config.smtpEmail,
+
       to: `${lider.email}`,
+
       subject: 'Nueva PQRSF asignada',
+
       html: `
       <body>
         <p>Buenas tardes, ${lider.nombre} ${lider.apellido}</p>
@@ -112,7 +114,7 @@ class AuthService {
         <hr />
         <h3>Información relevante de la PQRSF</h3>
         <p>Motivo: ${motivo}</p>
-        <p>Fecha de envio: ${fechaEnvioResponsableArea}</p>
+        <p>Fecha de envió: ${fechaEnvioResponsableArea}</p>
       </body>
       `,
     };
