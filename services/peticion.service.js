@@ -112,6 +112,8 @@ class PeticionService {
       },
     });
 
+    if (!peticiones) throw boom.notFound('Peticiones no encontradas');
+
     return peticiones;
   }
   async create(data) {
@@ -190,6 +192,10 @@ class PeticionService {
       peticion.dueDate = fecha.toISOString();
     }
 
+    if (peticion.liderId !== null) {
+      peticion.fechaEnvioResponsableArea = new Date();
+    }
+
     return peticion;
   }
 
@@ -199,16 +205,21 @@ class PeticionService {
       change.radicado = radicado;
     }
 
-    if (peticion.complejidadId) {
+    if (peticion.complejidadId === null && change.complejidadId) {
       const complejidad = await models.Complejidad.findByPk(
-        peticion.complejidadId,
+        change.complejidadId,
       );
-
       const { diasRestantes } = complejidad.dataValues;
+
       let fecha = new Date();
       fecha.setDate(fecha.getDate() + diasRestantes);
       change.dueDate = fecha.toISOString();
     }
+
+    if (peticion.liderId === null && change.liderId !== null) {
+      change.fechaEnvioResponsableArea = new Date();
+    }
+
     return change;
   }
 

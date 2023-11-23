@@ -11,8 +11,8 @@ router.get(
   passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
-      const user = req.user;
-      const peticiones = await service.findByUser(user.sub);
+      const { sub: user } = req.user;
+      const peticiones = await service.findByUser(user);
       res.json(peticiones);
     } catch (error) {
       next(error);

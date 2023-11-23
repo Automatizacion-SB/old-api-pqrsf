@@ -156,6 +156,9 @@ const PeticionSchema = {
     type: DataTypes.INTEGER,
     references: { model: CALIDAD_TABLE, key: 'id' },
   },
+  nota: {
+    type: DataTypes.TEXT,
+  },
   diasRestantes: {
     field: 'dias_restantes',
     type: DataTypes.INTEGER,

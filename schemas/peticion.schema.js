@@ -19,13 +19,14 @@ const radicadoTutela = Joi.any();
 const seGestiono = Joi.boolean().truthy(1).falsy(0).allow(null);
 const fechaDiligencia = Joi.date();
 const clasePeticionId = Joi.number().integer();
-const complejidadId = Joi.number().integer();
+const complejidadId = Joi.number().integer().allow(null);
 const liderId = Joi.number().integer().allow(null);
 const respuesta = Joi.string();
 const seDioRespuesta = Joi.boolean().truthy(1).falsy(0).allow(null);
 const descripcionGestion = Joi.string();
 const fechaRespuesta = Joi.date();
 const calidadId = Joi.number().integer();
+const nota = Joi.string();
 
 const derechoId = Joi.number().integer();
 const peticionId = Joi.number().integer();
@@ -63,6 +64,7 @@ const createPeticionSchema = Joi.object({
   descripcionGestion,
   fechaRespuesta,
   calidadId,
+  nota,
 });
 
 const createPQRSFSchema = Joi.object({
@@ -92,6 +94,7 @@ const updatePeticionSchema = Joi.object({
   descripcionGestion,
   fechaRespuesta,
   calidadId,
+  nota,
 });
 
 const addItemSchema = Joi.object({
