@@ -147,6 +147,21 @@ class PeticionService {
       throw error;
     }
   }
+
+  async createTemporal(data) {
+    try {
+      // Realiza la operación DML (inserción de datos)
+      const peticionCreada = await models.Peticion.create(data, {
+        include: ['peticionario', 'paciente'],
+      });
+
+      return peticionCreada;
+    } catch (error) {
+      // Maneja errores aquí
+      console.error(error);
+      throw error;
+    }
+  }
   async update(id, change) {
     const peticion = await this.findOne(id);
 

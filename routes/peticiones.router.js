@@ -85,6 +85,24 @@ router
   )
 
   .post(
+    '/temporal',
+    // passport.authenticate('jwt', { session: false }),
+    // checkRole('atencion'),
+    // validatorHandler(createPeticionSchema, 'body'),
+    async (req, res, next) => {
+      try {
+        const { body } = req;
+
+        const peticionCreada = await service.createTemporal(body);
+
+        res.json(peticionCreada);
+      } catch (error) {
+        next(error);
+      }
+    },
+  )
+
+  .post(
     '/add-item',
     passport.authenticate('jwt', { session: false }),
     // checkRole('atencion'),

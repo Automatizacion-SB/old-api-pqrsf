@@ -17,6 +17,9 @@ const UsuarioSchema = {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  estado: {
+    type: DataTypes.BOOLEAN,
+  },
   password: {
     type: DataTypes.STRING,
     allowNull: false,

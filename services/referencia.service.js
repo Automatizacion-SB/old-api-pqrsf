@@ -97,6 +97,7 @@ class ReferenciaService {
       attributes: ['id', 'cargo'],
       where: {
         role: 'lider',
+        estado: true,
       },
     });
 
