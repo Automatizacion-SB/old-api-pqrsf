@@ -12,8 +12,9 @@ class ReferenciaService {
   }
 
   async findEps() {
-    const referencias = await models.Eps.findAll();
-
+    const referencias = await models.Eps.findAll({
+      order: [['nombre', 'ASC']],
+    });
     if (!referencias) throw boom.notFound('Referencia no encontrada');
 
     return referencias;

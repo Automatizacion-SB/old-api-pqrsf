@@ -175,10 +175,10 @@ class PeticionService {
   }
 
   async gestionarPeticion(peticion) {
-    if (peticion.seGestiono) {
-      const radicado = await this.calcularNuevoRadicado();
-      peticion.radicado = radicado;
-    }
+    // if (peticion.seGestiono) {
+    //   const radicado = await this.calcularNuevoRadicado();
+    //   peticion.radicado = radicado;
+    // }
 
     if (peticion.complejidadId) {
       const complejidad = await models.Complejidad.findByPk(
@@ -200,10 +200,10 @@ class PeticionService {
   }
 
   async actualizarPeticion(peticion, change) {
-    if (!peticion.seGestiono) {
-      const radicado = await this.calcularNuevoRadicado();
-      change.radicado = radicado;
-    }
+    // if (!peticion.seGestiono) {
+    //   const radicado = await this.calcularNuevoRadicado();
+    //   change.radicado = radicado;
+    // }
 
     if (peticion.complejidadId === null && change.complejidadId) {
       const complejidad = await models.Complejidad.findByPk(
