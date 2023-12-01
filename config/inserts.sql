@@ -40,7 +40,9 @@ INSERT INTO eps (nombre)
     ('Sin Dato'),
     ('Hospital Pablo Tobón Uribe'),
     ('Coosalud'),
-    ('Savia Salud EPS');
+    ('Savia Salud EPS'),
+    ('Coomeva Eps'),
+    ('Sanitas Eps');
 GO
 
 INSERT INTO regimenes (nombre)
@@ -65,7 +67,9 @@ INSERT INTO servicios (nombre)
 VALUES
     ('Consulta Externa'),
     ('Hospitalización'),
-    ('Servicio de Alimentación');
+    ('Servicio de Alimentación'),
+    ('Sin dato');
+
 GO
 
 INSERT INTO areas (nombre)
@@ -81,7 +85,8 @@ VALUES
     ('Servicios Generales'),
     ('TrabajoSocial'),
     ('Vigilancia'),
-    ('Pasillo o áreas comunes');
+    ('Pasillo o áreas comunes'),
+    ('Sin Dato');
 GO
 
 INSERT INTO canales (nombre)
@@ -107,6 +112,7 @@ INSERT INTO complejidades (nombre, dias_respuesta)
 VALUES
   ('Reclamo de riesgo simple', 3),
   ('Reclamo de riesgo priorizado', 2),
+  ('Bajo riesgo', 15),
   ('Reclamo de riesgo vital', 1);
 GO
 
@@ -115,7 +121,7 @@ VALUES
     ('Sin Comenzar'),
     ('Estudio'),
     ('Pendiente por Respuesta'),
-    ('Respondido'),
+    ('Se dio respuesta'),
     ('Finalizado'),
     ('Negado');
 GO
@@ -130,15 +136,29 @@ VALUES
     ('Accesibilidad');
 GO
 
-INSERT INTO usuarios (nombre, apellido, cargo, email, role, password)
+INSERT INTO usuarios (nombre, apellido, cargo, email, role, password, estado)
 VALUES
-    ('Paola Cristina', 'Zapata Arroyabe', 'Líder de Nutrición', 'galvan.dsierra@gmail.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'),
-    ('Maria Luisa',	'Villegas Cadavid', 'Líder de Servicios Generales-Admin', 'galvan.dsierra+1@gmail.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'),
-    ('Isabel Cristina',	'Henao Perez', 'Líder de Trabajo Social', 'galvan.dsierra+2@gmail.com', 'atencion', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'),
-    ('Catalina', 'Pelaes Gomez', 'Lider de Enfermería', 'galvan.dsierra+9@gmail.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'),
-    ('Stephanie',	'Correa Saldariaga', 'Coordinadora Medica', 'galvan.dsierra+6@gmail.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'),
-    ('Teresita', ' Minotas Ruiz', 'Servicio Farmacéutico', 'galvan.dsierra+7@gmail.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'),
-    ('Ana Catalina', 'Ulloa', 'Lider de Familias Saludables', 'galvan.dsierra+8@gmail.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy');
+
+('Paola Cristina', 'Zapata Arroyabe', 'Líder de Nutrición', 'nutricionsalimentacion@hisantaana.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	,1),
+('Maria Luisa', 'Villegas Cadavid', 'Líder de Servicios Generales-Admin', 'lidersgenerales@hisantaana.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	,1),
+('Isabel Cristina', 'Henao Perez', 'Líder de Trabajo ', 'atencionalusuario@hisantaana.com', 'atencion', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	,1),
+('Catalina', 'Pelaes Gomez', 'Lider de Enfermeria', 'enfermeraliderhospitalizacion@hisantaana.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	,1),
+('Stephanie', 'Correa Saldariaga', 'Coordinadora Medica', 'coordmedico@hisantaana.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	, 1),
+('Teresita', 'Minotas Ruiz', 'Servicio Farmaceutico', 'farmacia@hisantaana.com@hisantaana.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	,1),
+('Ana Catalina', 'Ulloa', 'Lider de Familias Saludables', 'trabajosocial2@hisantaana.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	,1),
+('Deisy', 'Gonzales Quiros', 'Atención al Usuario', 'pruebas@hisantaana.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	,0),
+('Nicolas ', 'Esguerra', 'Coordinador Medico', 'pruebas+1@hisantaana.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	,0),
+('Gloria', 'Guzmán', 'Coordinadora Médica', 'pruebas+2@hisantaana.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	,0),
+('Daniela', 'Valencia', 'Biomedica e Infraestructura', 'prueba+3@hisantaana.com,', ' lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	,0),
+('Gloria', 'Palacios', 'Consulta Externa', 'prueba+4@hisantaana.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	,0),
+('Maria Isabel', 'Calle', 'Hospitalización', 'prueba+5@hisantaana.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	,0),
+('Laura', 'Franco', 'Lider Servicio de Alimentación', 'prueba+6@hisantaana.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	,0),
+('Sandra', 'Pardo', 'Trabajo Social', 'prueba+7@hisantaana.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	,0),
+('Sandra', 'Pardo', 'Admisiones', 'prueba+8@hisantaana.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	,0),
+('Santiago', 'Cardona', 'Infraestructura', 'prueba+9@hisantaana.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	,0),
+('Catalina', 'Perez', 'Lider de Hospitalización', 'prueba+10@hisantaana.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	,0),
+('Laura', 'Victoria', 'Nutrición', 'prueba+11@hisantaana.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	,0),
+('Nathalia', 'Perez', 'Nutrición', 'prueba+12@hisantaana.com', 'lider', '$2b$10$vu7tnMPoLZ/Pzv87kyQsLu2cUWakVXg6tFEO75WzWF8wBLNNDXzxy'	,0);
 GO
 
 INSERT INTO derechos(derecho, valor, deber, factor_exito, interpretacion)
