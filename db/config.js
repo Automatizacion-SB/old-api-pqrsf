@@ -14,7 +14,6 @@ module.exports = {
       options: {
         encrypt: true,
         ssl: {
-          rejectUnauthorized: false, // Cambio importante: deshabilita la verificación del certificado
           minVersion: 'TLSv1_2', // Ajusta la versión del protocolo
         },
       },
@@ -27,7 +26,6 @@ module.exports = {
       options: {
         encrypt: true,
         ssl: {
-          rejectUnauthorized: false, // Cambio importante: deshabilita la verificación del certificado
           minVersion: 'TLSv1_2', // Ajusta la versión del protocolo
         },
       },
