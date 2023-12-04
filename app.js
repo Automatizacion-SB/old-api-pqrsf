@@ -25,6 +25,6 @@ app.use(logErrors);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT, () => {
   console.log(`🚀 Listen in port ${process.env.PORT}`);
 });

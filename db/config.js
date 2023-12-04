@@ -3,7 +3,8 @@ const { config } = require('./../config/config');
 const USER = encodeURIComponent(config.dbUser);
 const PASSWORD = encodeURIComponent(config.dbPassword);
 const URI = `mssql://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
-// const URI = `mssql://${config.dbHost}:${config.dbPort}/${config.dbName}?authentication=Windows`;
+
+// const URI = `mssql://${config.dbHost}:${config.dbPort}/${config.dbName}?domain=${config.dbDomain}`;
 
 module.exports = {
   development: {
@@ -11,7 +12,11 @@ module.exports = {
     dialect: 'mssql',
     dialectOptions: {
       options: {
-        encrypt: true, // Habilita la encriptación SSL
+        encrypt: true,
+        ssl: {
+          rejectUnauthorized: false, // Cambio importante: deshabilita la verificación del certificado
+          minVersion: 'TLSv1_2', // Ajusta la versión del protocolo
+        },
       },
     },
   },
@@ -20,7 +25,11 @@ module.exports = {
     dialect: 'mssql',
     dialectOptions: {
       options: {
-        encrypt: true, // En producción, asegúrate de manejar adecuadamente la validación del certificado
+        encrypt: true,
+        ssl: {
+          rejectUnauthorized: false, // Cambio importante: deshabilita la verificación del certificado
+          minVersion: 'TLSv1_2', // Ajusta la versión del protocolo
+        },
       },
     },
   },
