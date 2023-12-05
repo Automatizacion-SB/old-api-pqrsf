@@ -12,10 +12,7 @@ module.exports = {
     dialect: 'mssql',
     dialectOptions: {
       options: {
-        encrypt: true,
-        ssl: {
-          minVersion: 'TLSv1_2', // Ajusta la versión del protocolo
-        },
+        encrypt: false,
       },
     },
   },
@@ -24,10 +21,7 @@ module.exports = {
     dialect: 'mssql',
     dialectOptions: {
       options: {
-        encrypt: true,
-        ssl: {
-          minVersion: 'TLSv1_2', // Ajusta la versión del protocolo
-        },
+        encrypt: false,
       },
     },
   },
