@@ -207,7 +207,7 @@ class PeticionService {
       peticion.dueDate = fecha.toISOString();
     }
 
-    if (peticion.liderId !== null) {
+    if (peticion.liderId) {
       peticion.fechaEnvioResponsableArea = new Date();
     }
 
@@ -215,11 +215,6 @@ class PeticionService {
   }
 
   async actualizarPeticion(peticion, change) {
-    // if (!peticion.seGestiono) {
-    //   const radicado = await this.calcularNuevoRadicado();
-    //   change.radicado = radicado;
-    // }
-
     if (peticion.complejidadId === null && change.complejidadId) {
       const complejidad = await models.Complejidad.findByPk(
         change.complejidadId,
@@ -231,7 +226,7 @@ class PeticionService {
       change.dueDate = fecha.toISOString();
     }
 
-    if (peticion.liderId === null && change.liderId !== null) {
+    if (!peticion.liderId && change.liderId) {
       change.fechaEnvioResponsableArea = new Date();
     }
 
