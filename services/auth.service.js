@@ -54,7 +54,7 @@ class AuthService {
     const payload = { sub: user.id };
     const token = jwt.sign(payload, config.jwtSecret, { expiresIn: '15min' });
 
-    const link = `http://localhost:3020/recovery?token=${token}`;
+    const link = `http://172.16.1.17:3025/recovery?token=${token}`;
 
     await service.update(user.id, {
       recoveryToken: token,
