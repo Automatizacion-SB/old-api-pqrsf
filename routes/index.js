@@ -6,6 +6,7 @@ const referenciasRouter = require('./referencias.router');
 const usuariosRouter = require('./usuarios.router');
 const authRouter = require('./auth.router');
 const profileRouter = require('./profile.router');
+const indicadoresRouter = require('./indicadores.router');
 
 function routerApi(app) {
   const router = express.Router();
@@ -18,7 +19,8 @@ function routerApi(app) {
     .use('/referencias', referenciasRouter)
     .use('/usuarios', usuariosRouter)
     .use('/auth', authRouter)
-    .use('/profile', profileRouter);
+    .use('/profile', profileRouter)
+    .use('/indicadores', indicadoresRouter);
 }
 
 module.exports = routerApi;
