@@ -190,25 +190,24 @@ class PeticionService {
   }
 
   async gestionarPeticion(peticion) {
-    // if (peticion.seGestiono) {
-    //   const radicado = await this.calcularNuevoRadicado();
-    //   peticion.radicado = radicado;
-    // }
+    if (peticion.seGestiono === true) {
+      const radicado = await this.calcularNuevoRadicado();
+      peticion.radicado = radicado;
+    }
 
     if (peticion.complejidadId) {
       const complejidad = await models.Complejidad.findByPk(
         peticion.complejidadId,
       );
-
       const { diasRestantes } = complejidad.dataValues;
-
       let fecha = new Date();
       fecha.setDate(fecha.getDate() + diasRestantes);
       peticion.dueDate = fecha.toISOString();
     }
 
     if (peticion.liderId) {
-      peticion.fechaEnvioResponsableArea = new Date();
+      const currentDate = new Date();
+      peticion.fechaEnvioResponsableArea = currentDate;
     }
 
     return peticion;
@@ -227,7 +226,8 @@ class PeticionService {
     }
 
     if (!peticion.liderId && change.liderId) {
-      change.fechaEnvioResponsableArea = new Date();
+      const currentDate = new Date();
+      change.fechaEnvioResponsableArea = currentDate;
     }
 
     return change;

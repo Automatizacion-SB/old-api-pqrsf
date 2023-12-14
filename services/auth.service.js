@@ -97,6 +97,16 @@ class AuthService {
     const { liderId, motivo, fechaEnvioResponsableArea } = peticion;
 
     const lider = await service.findOne(liderId);
+    const formatearFecha = (fecha) => {
+      const date = new Date(fecha);
+      const dia = date.getDate().toString().padStart(2, '0');
+      const mes = (date.getMonth() + 1).toString().padStart(2, '0');
+      const anio = date.getFullYear();
+
+      return `${dia}-${mes}-${anio}`;
+    };
+
+    const fechaEnvio = formatearFecha(fechaEnvioResponsableArea);
 
     const message = {
       from: config.smtpEmail,
@@ -114,7 +124,7 @@ class AuthService {
         <hr />
         <h3>Información relevante de la PQRSF</h3>
         <p>Motivo: ${motivo}</p>
-        <p>Fecha de envió: ${fechaEnvioResponsableArea}</p>
+        <p>Fecha de envió: ${fechaEnvio}</p>
       </body>
       `,
     };
