@@ -96,8 +96,8 @@ class PeticionService {
       SELECT  YEAR(p.fecha_recepcion) AS 'year',
               MONTH(p.fecha_recepcion) AS 'mounth',
               DATENAME(MONTH, p.fecha_recepcion) AS 'mounth_name',
-              tp.nombre AS 'tipo_peticion',
-              ROUND(AVG(DATEDIFF(DAY, p.fecha_recepcion, p.fecha_respuesta) * 1.0), 2) AS 'promedio_respuesta'
+              tp.nombre AS 'tipo',
+              ROUND(AVG(DATEDIFF(DAY, p.fecha_recepcion, p.fecha_respuesta) * 1.0), 2) AS 'promedio'
       FROM	  peticiones AS p INNER JOIN tipos_peticion AS tp
               ON tp.id = p.tipo_peticion_id
       WHERE	  (p.fecha_respuesta IS NOT NULL)
