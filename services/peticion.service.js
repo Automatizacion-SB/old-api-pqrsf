@@ -3,6 +3,7 @@ const boom = require('@hapi/boom');
 const { models } = require('../libs/sequelize');
 const AuthService = require('./auth.service');
 const { Op } = require('sequelize');
+const sequelize = require('../libs/sequelize');
 
 const emailService = new AuthService();
 class PeticionService {
@@ -150,11 +151,18 @@ class PeticionService {
 
   async createTemporal(data) {
     try {
+      await sequelize.query(
+        'DISABLE TRIGGER tr_peticiones_insert ON dbo.peticiones',
+      );
+
       // Realiza la operación DML (inserción de datos)
       const peticionCreada = await models.Peticion.create(data, {
         include: ['peticionario', 'paciente'],
       });
 
+      await sequelize.query(
+        'ENABLE TRIGGER tr_peticiones_insert ON dbo.peticiones',
+      );
       return peticionCreada;
     } catch (error) {
       // Maneja errores aquí

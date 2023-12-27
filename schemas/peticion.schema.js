@@ -17,6 +17,7 @@ const tutela = Joi.boolean().truthy(1).falsy(0);
 const radicadoTutela = Joi.any();
 
 const seGestiono = Joi.boolean().truthy(1).falsy(0).allow(null);
+const fechaRecepcion = Joi.date();
 const fechaDiligencia = Joi.date();
 const clasePeticionId = Joi.number().integer();
 const complejidadId = Joi.number().integer().allow(null);
@@ -49,6 +50,7 @@ const createPeticionSchema = Joi.object({
   canalId: canalId.required(),
   dirigidaA: dirigidaA.required(),
   estadoId,
+  fechaRecepcion,
   tutela,
   radicadoTutela,
   peticionario: createPeticionarioSchema,
@@ -74,6 +76,7 @@ const createPQRSFSchema = Joi.object({
   areaId: areaId.required(),
   tutela: tutela,
   radicadoTutela,
+  fechaRecepcion,
   dirigidaA: dirigidaA.required(),
 
   peticionario: createPeticionarioSchema,
@@ -85,6 +88,7 @@ const updatePeticionSchema = Joi.object({
   estadoId,
   seGestiono,
   radicado,
+  fechaRecepcion,
   fechaDiligencia,
   clasePeticionId,
   complejidadId,

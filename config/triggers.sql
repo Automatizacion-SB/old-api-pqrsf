@@ -6,7 +6,7 @@
 
 
 -- fecha_envio_responsable_area
-CASE WHEN lider_id IS NOT NULL THEN CONVERT(DATE, GETDATE()) END
+-- CASE WHEN lider_id IS NOT NULL THEN CONVERT(DATE, GETDATE()) END
 
 -- Formateo para su comprensión:
 --   CASE
