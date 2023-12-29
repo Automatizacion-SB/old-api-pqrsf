@@ -15,7 +15,14 @@ const {
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+
+const corsOptions = {
+  // solo permitimos peticiones de esta dirección
+  origin: 'http://172.16.1.17:3025',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+};
+
+app.use(cors(corsOptions));
 
 require('./utils/auth');
 
