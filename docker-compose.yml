@@ -6,7 +6,7 @@ services:
     environment:
       - POSTGRES_DB=db_pqrsf
       - POSTGRES_USER=sa
-      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_PASSWORD=JPQrS$2468#2025$
     ports:
       - 5432:5432
     volumes:
