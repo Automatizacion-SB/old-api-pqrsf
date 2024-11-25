@@ -8,7 +8,7 @@ services:
       - POSTGRES_USER=sa
       - POSTGRES_PASSWORD=JPQrS$2468#2025$
     ports:
-      - 5432:5432
+      - 5432:5432:1433
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
 
